@@ -66,16 +66,14 @@ interface TrainingProgramStateOptions {
 export function createTrainingProgramState(options: TrainingProgramStateOptions) {
   const { state, render } = options
 
-  const loadTrainingPrograms = async (forceRefresh = false): Promise<void> => {
-    if (!hasTrainingProgramsEnv()) return
-    if (state.trainingProgramsLoading) return
-    if (state.trainingPrograms != null && !forceRefresh) return
-
-    state.trainingProgramsLoading = true
-    state.trainingProgramsError = null
-    if (forceRefresh) {
-      state.trainingProgramsLoadPresetNotice = null
-    }
+const loadTrainingPrograms = async (forceRefresh = false): Promise<void> => {
+  if (state.trainingProgramsLoading) return
+  if (state.trainingPrograms != null && !forceRefresh) return
+  state.trainingPrograms = []
+  state.trainingProgramsLoading = false
+  state.trainingProgramsError = null
+  void render()
+}
     void render()
 
     try {
