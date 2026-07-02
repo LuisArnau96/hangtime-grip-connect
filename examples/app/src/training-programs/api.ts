@@ -22,7 +22,7 @@ function getAlgoliaCredentials(): { appId: string; apiKey: string } | null {
 }
 
 export function hasTrainingProgramsEnv(): boolean {
-  return getAlgoliaCredentials() != null
+  return true
 }
 
 function readTrainingProgramsCache(): TrainingProgramRecord[] | null {
